@@ -17,13 +17,26 @@ describe("Select event registration", () => {
     expect(mockTest).toHaveBeenCalledWith('second');
     expect(second.selected).toBe(true);
   });
-  test("`userEvent.selectOptions` should trigger an onChange event", () => {
+  test("`userEvent.selectOptions` should trigger an onChange event with single select", () => {
     const mockTest = jest.fn().mockImplementation(val => console.log(val));
-    const { getByTestId, debug } = render(<Select test={mockTest} />);
+    const { getByTestId, debug } = render(<Select mulitple={false} test={mockTest} />);
     const select = getByTestId("select");
     const second = getByTestId("second");
 
     userEvent.selectOptions(select, ["second"]);
+
+    expect(mockTest).toHaveBeenCalledTimes(1);
+    expect(mockTest).toHaveBeenCalledWith('second');
+    expect(second.selected).toBe(true);
+  });
+
+  test.only("`userEvent.selectOptions` should trigger an onChange event with multiple select", () => {
+    const mockTest = jest.fn().mockImplementation(val => console.log(val));
+    const { getByTestId, debug } = render(<Select mulitple={true} test={mockTest} />);
+    const select = getByTestId("select");
+    const second = getByTestId("second");
+
+    userEvent.selectOptions(select, ["second", "third"]);
 
     expect(mockTest).toHaveBeenCalledTimes(1);
     expect(mockTest).toHaveBeenCalledWith('second');

@@ -7,14 +7,14 @@ const Select = props => {
 
   };
   return (
-    <select data-testid="select" onChange={handleChange}>
+    <select data-testid="select" onChange={handleChange} multiple={true} onClick={() => console.log('select clicked')}>
       <option data-testid="first" value="first">
         first
       </option>
-      <option data-testid="second" value="second">
+      <option data-testid="second" value="second" onClick={() => console.log('second clicked')}>
         second
       </option>
-      <option data-testid="third" value="third">
+      <option data-testid="third" value="third" onClick={() => console.log('third clicked')}>
         third
       </option>
     </select>
