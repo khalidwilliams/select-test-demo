@@ -24,8 +24,7 @@ describe("Select event registration", () => {
     const second = getByTestId("second");
 
     userEvent.selectOptions(select, ["second"]);
-    debug();
-    console.log(select.value)
+
     expect(mockTest).toHaveBeenCalledTimes(1);
     expect(mockTest).toHaveBeenCalledWith('second');
     expect(second.selected).toBe(true);
